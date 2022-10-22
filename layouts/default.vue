@@ -10,7 +10,7 @@ useHead({
   <section class="flex flex-col justify-between min-h-screen">
     <Nav />
 
-    <main class="container flex-1 py-4 md:py-8">
+    <main class="container flex-1 py-4 overflow-hidden md:py-8">
       <slot />
 
       <Modal v-if="isOpen">

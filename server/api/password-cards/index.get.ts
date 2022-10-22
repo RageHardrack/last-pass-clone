@@ -1,6 +1,6 @@
-import data from "~~/data/data.json";
+import {data} from "~~/data/data";
 import { IPassword } from '~~/interfaces';
 
 export default defineEventHandler((event): IPassword[] => {
-  return data as IPassword[];
+  return data;
 });
