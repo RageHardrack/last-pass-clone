@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {v4} from 'uuid'
+import { v4 } from "uuid";
 import { IPassword } from "~~/interfaces";
 
 const { closeModal } = useModal();
@@ -12,17 +12,27 @@ const newCard = reactive<IPassword>({
 });
 
 const handleSubmit = async () => {
-  newCard.id = v4()
-  const {data} = await useFetch("/api/password-cards", {
-    method: "POST",
-    body: newCard,
-  });
-  closeModal()
+  try {
+    newCard.id = v4();
+    await useFetch("/api/password-cards", {
+      method: "POST",
+      body: newCard,
+    });
+    closeModal();
+
+    newCard.id = "";
+    newCard.url = "";
+    newCard.name = "";
+    newCard.username = "";
+    newCard.password = "";
+  } catch (error) {
+    console.error(error);
+  }
 };
 </script>
 
 <template>
-  <section>
+  <form class="flex flex-col p-4 space-y-4 bg-white border border-gray-400 rounded-lg shadow-lg">
     <h2>Nueva Contraseña</h2>
 
     <div>
@@ -63,7 +73,9 @@ const handleSubmit = async () => {
       </div>
     </div>
 
-    <button @click.prevent="closeModal" type="button">Cancel</button>
-    <button @click="handleSubmit">Save</button>
-  </section>
+    <footer>
+      <button @click.prevent="closeModal" type="button">Cancel</button>
+      <button @click="handleSubmit">Save</button>
+    </footer>
+  </form>
 </template>

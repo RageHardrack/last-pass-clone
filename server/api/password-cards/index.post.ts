@@ -1,9 +1,9 @@
 import data from "~~/data/data.json";
-
+import { IPassword } from "../../../interfaces/Password";
 
 export default defineEventHandler(async (event) => {
-  const body = await readBody(event);
+  const body: IPassword = await readBody(event);
   data.push(body);
-  console.log(data);
+
   return "success";
 });
