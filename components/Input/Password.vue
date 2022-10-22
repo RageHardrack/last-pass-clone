@@ -9,7 +9,7 @@ interface Props {
 
 const isShowPassword = ref(false);
 
-const {modelValue} = defineProps<Props>();
+const { modelValue } = defineProps<Props>();
 const emit = defineEmits(["update:modelValue"]);
 
 const val = ref(modelValue);

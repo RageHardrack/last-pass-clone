@@ -1,40 +1,63 @@
 <script setup lang="ts">
 import { v4 } from "uuid";
-import { IPassword } from "~~/interfaces";
+import { useField, useForm } from "vee-validate";
+
+import { PasswordSchema } from "~~/schemas";
 
 const { closeModal } = useModal();
 
-const newCard = reactive<IPassword>({
-  id: "",
-  url: "",
-  name: "",
-  username: "",
-  password: "",
+const { handleSubmit, resetForm } = useForm({
+  validationSchema: PasswordSchema,
 });
 
-const handleSubmit = async () => {
+const { value: url, errorMessage: urlError } = useField<string>("url", "", {
+  initialValue: "",
+});
+const { value: name, errorMessage: nameError } = useField<string>("name", "", {
+  initialValue: "",
+});
+const { value: username, errorMessage: usernameError } = useField<string>(
+  "username",
+  "",
+  { initialValue: "" }
+);
+const { value: password, errorMessage: passwordError } = useField<string>(
+  "password",
+  "",
+  { initialValue: "" }
+);
+
+const onSubmit = handleSubmit(async () => {
   try {
-    newCard.id = v4();
-    await useFetch("/api/password-cards", {
+    await useFetch("/api/new-password-card", {
       method: "POST",
-      body: newCard,
+      body: {
+        id: v4(),
+        url: url.value,
+        name: name.value,
+        username: username.value,
+        password: password.value,
+      },
     });
     closeModal();
-
-    newCard.id = "";
-    newCard.url = "";
-    newCard.name = "";
-    newCard.username = "";
-    newCard.password = "";
+    resetForm({
+      values: {
+        id: "",
+        url: "",
+        name: "",
+        username: "",
+        password: "",
+      },
+    });
   } catch (error) {
     console.error(error);
   }
-};
+});
 </script>
 
 <template>
   <form
-    @submit.prevent="handleSubmit"
+    @submit.prevent="onSubmit"
     class="flex flex-col space-y-4 overflow-hidden bg-white"
   >
     <header
@@ -54,31 +77,35 @@ const handleSubmit = async () => {
         label="URL:"
         name="url"
         placeholder="Add the website here"
-        v-model="newCard.url"
+        v-model="url"
+        :error="urlError"
       />
 
       <Input
         label="Name:"
         name="name"
         placeholder="Website's name"
-        v-model="newCard.name"
+        v-model="name"
+        :error="nameError"
       />
 
       <Input
         label="Username:"
         name="username"
         placeholder="Your username"
-        v-model="newCard.url"
+        v-model="username"
+        :error="usernameError"
       />
 
       <InputPassword
         label="Password:"
         name="password"
         placeholder="Create a password"
-        v-model="newCard.password"
+        v-model="password"
+        :error="passwordError"
       />
 
-      <PasswordOptions v-model="newCard.password" />
+      <PasswordOptions v-model="password" />
     </section>
 
     <footer class="flex justify-end w-full gap-4 p-2">

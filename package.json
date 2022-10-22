@@ -13,6 +13,8 @@
     "nuxt": "3.0.0-rc.12"
   },
   "dependencies": {
-    "uuid": "9.0.0"
+    "uuid": "9.0.0",
+    "vee-validate": "4.7.0",
+    "yup": "0.32.11"
   }
 }
