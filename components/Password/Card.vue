@@ -5,12 +5,15 @@ interface Props {
   card: IPassword;
 }
 
+const router = useRouter();
+
 const { card } = defineProps<Props>();
 </script>
 
 <template>
   <article
-    class="flex flex-col p-4 space-y-4 border border-gray-400 rounded-lg shadow-lg transition-all hover:scale-105 duration-300 ease-in-out"
+    class="cursor-pointer flex flex-col p-4 space-y-4 border border-gray-400 rounded-lg shadow-lg transition-all hover:scale-105 duration-300 ease-in-out"
+    @click="router.push(`edit-password/${card.id}`)"
   >
     <section class="flex-1 flex items-center justify-center">
       <IconLaptopSvg class="w-16 h-16 text-gray-500" />

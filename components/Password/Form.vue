@@ -5,6 +5,7 @@ import { Form as ValidationForm } from "vee-validate";
 import { PasswordSchema } from "~~/schemas";
 
 const { closeModal } = useModal();
+const router = useRouter()
 
 const handleSubmit = async (values) => {
   try {
@@ -19,6 +20,7 @@ const handleSubmit = async (values) => {
       },
     });
     closeModal();
+    router.push("/")
   } catch (error) {
     console.error(error);
   }
