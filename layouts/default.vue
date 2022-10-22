@@ -19,7 +19,7 @@ useHead({
     </main>
 
     <footer class="flex justify-end p-8">
-      <RoundedButton @click="openModal" />
+      <ButtonRounded @click="openModal" />
     </footer>
   </section>
 </template>

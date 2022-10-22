@@ -32,50 +32,71 @@ const handleSubmit = async () => {
 </script>
 
 <template>
-  <form class="flex flex-col p-4 space-y-4 bg-white border border-gray-400 rounded-lg shadow-lg">
-    <h2>Nueva Contraseña</h2>
+  <form
+    @submit.prevent="handleSubmit"
+    class="flex flex-col space-y-4 overflow-hidden bg-white"
+  >
+    <header
+      class="flex items-center justify-between w-full px-3 py-2 text-white bg-red-600"
+    >
+      <p class="text-sm">New Password</p>
 
-    <div>
-      <div class="flex flex-col">
-        <label for="">URL:</label>
+      <h2 class="text-3xl">LastPass</h2>
+
+      <button @click.prevent="closeModal"><IconCrossSvg class="w-6 h-6 text-white" /></button>
+    </header>
+
+    <section class="flex flex-col flex-1 p-4 space-y-4">
+      <div class="flex flex-col w-full">
+        <label for="url" class="font-semibold">URL:</label>
         <input
+          id="url"
           type="text"
           v-model="newCard.url"
           placeholder="Add the website here"
+          class="w-full px-2 py-1 border border-gray-400 rounded"
         />
       </div>
 
       <div class="flex flex-col">
-        <label for="">Name:</label>
+        <label for="name" class="font-semibold">Name:</label>
         <input
+          id="name"
           type="text"
           v-model="newCard.name"
           placeholder="Website's name"
+          class="w-full px-2 py-1 border border-gray-400 rounded"
         />
       </div>
 
       <div class="flex flex-col">
-        <label for="">Username:</label>
+        <label for="username" class="font-semibold">Username:</label>
         <input
+          id="username"
           type="text"
           v-model="newCard.username"
           placeholder="Your username"
+          class="w-full px-2 py-1 border border-gray-400 rounded"
         />
       </div>
 
       <div class="flex flex-col">
-        <label for="">Password:</label>
+        <label for="password" class="font-semibold">Password:</label>
         <input
+          id="password"
           type="password"
           v-model="newCard.password"
           placeholder="Create a password"
+          class="w-full px-2 py-1 border border-gray-400 rounded"
         />
       </div>
-    </div>
+    </section>
 
-    <footer>
-      <button @click.prevent="closeModal" type="button">Cancel</button>
-      <button @click="handleSubmit">Save</button>
+    <footer class="flex justify-end w-full gap-4 p-2">
+      <ButtonOutlined @click.prevent="closeModal" type="button">
+        Cancel
+      </ButtonOutlined>
+      <Button type="submit">Save</Button>
     </footer>
   </form>
 </template>
