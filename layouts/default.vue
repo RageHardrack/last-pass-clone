@@ -14,7 +14,7 @@ useHead({
       <slot />
 
       <Modal v-if="isOpen">
-        <Form />
+        <PasswordForm />
       </Modal>
     </main>
 

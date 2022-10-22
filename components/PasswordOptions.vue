@@ -24,11 +24,13 @@ const handleNewPassword = () => {
 </script>
 
 <template>
-  <section class="flex items-center justify-between w-full">
+  <section
+    class="flex flex-col md:flex-row gap-4 items-center justify-between w-full"
+  >
     <div class="flex flex-col items-start justify-center flex-1 space-y-4">
-      <h2 class="text-xl font-semibold">Options</h2>
+      <h2 class="text-xl font-semibold text-gray-700">Advanced Options</h2>
 
-      <ul class="flex flex-col w-10/12 space-y-2">
+      <ul class="flex flex-col w-10/12 space-y-2 text-gray-700">
         <li>
           <input
             type="range"

@@ -65,7 +65,7 @@ const onSubmit = handleSubmit(async () => {
     >
       <p class="text-sm">New Password</p>
 
-      <h2 class="text-3xl">LastPass</h2>
+      <h2 class="text-3xl hidden md:block">LastPass</h2>
 
       <button @click.prevent="closeModal">
         <IconCrossSvg class="w-6 h-6 text-white" />
