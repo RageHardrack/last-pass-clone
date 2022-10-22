@@ -1,5 +1,5 @@
 export interface IPassword {
-  id: string;
+  id?: string;
   name: string;
   url: string;
   username: string;

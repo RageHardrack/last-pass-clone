@@ -8,7 +8,7 @@ const useGeneratePassword = ({
   const SPECIAL_CHARS: string = "!@#$%^&*()";
   const NUMERIC_CHARS: string = "0123456789";
 
-  const newPassword = useState("newPassword", () => "");
+  const newPassword = useState<string>("newPassword", () => "");
 
   const chars = computed(
     () =>

@@ -1,20 +1,26 @@
 <script setup lang="ts">
+import { useField } from "vee-validate";
+
 interface Props {
-  modelValue: string;
+  value?: string;
   label?: string;
   name: string;
   placeholder?: string;
-  error?: string;
 }
 
 const isShowPassword = ref(false);
 
-const { modelValue } = defineProps<Props>();
-const emit = defineEmits(["update:modelValue"]);
+const props = defineProps<Props>();
+const name = toRef(props, "name");
 
-const val = ref(modelValue);
-
-const handleInput = () => emit("update:modelValue", val.value);
+const {
+  value: inputValue,
+  errorMessage,
+  handleBlur,
+  handleChange,
+} = useField<string>(name, "", {
+  initialValue: props.value,
+});
 </script>
 
 <template>
@@ -26,10 +32,12 @@ const handleInput = () => emit("update:modelValue", val.value);
         :id="name"
         :type="isShowPassword ? 'text' : 'password'"
         :name="name"
-        v-model="val"
-        @input="handleInput"
+        :value="inputValue"
         :placeholder="placeholder"
+        @input="handleChange"
+        @blur="handleBlur"
         class="w-full px-2 py-1 border border-gray-400 rounded"
+        :class="{ 'border-red-600': Boolean(errorMessage) }"
       />
 
       <button
@@ -43,8 +51,8 @@ const handleInput = () => emit("update:modelValue", val.value);
       </button>
     </span>
 
-    <p v-if="error" class="p-2 text-red-400">
-      {{ error }}
+    <p v-if="errorMessage" class="p-2 text-red-400">
+      {{ errorMessage }}
     </p>
   </label>
 </template>

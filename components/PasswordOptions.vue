@@ -1,26 +1,14 @@
 <script setup lang="ts">
-interface Props {
-  modelValue: string;
-}
-
-defineProps<Props>();
 
 const allowSpecialChars = ref(true);
 const allowNumericChars = ref(true);
 const passwordLength = ref(8);
 
-const { newPassword, generateNewPassword } = useGeneratePassword({
+const {  generateNewPassword } = useGeneratePassword({
   allowSpecialChars,
   allowNumericChars,
   passwordLength,
 });
-
-const emit = defineEmits(["update:modelValue"]);
-
-const handleNewPassword = () => {
-  generateNewPassword();
-  emit("update:modelValue", newPassword.value);
-};
 </script>
 
 <template>
@@ -71,7 +59,7 @@ const handleNewPassword = () => {
 
     <div class="flex items-center justify-center">
       <button
-        @click.prevent="handleNewPassword"
+        @click.prevent="generateNewPassword"
         class="flex px-3 py-1 font-semibold text-white transition duration-500 ease-in-out bg-red-600 rounded-lg hover:bg-opacity-90"
       >
         Generate

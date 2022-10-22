@@ -1,63 +1,34 @@
 <script setup lang="ts">
 import { v4 } from "uuid";
-import { useField, useForm } from "vee-validate";
+import { Form as ValidationForm } from "vee-validate";
 
 import { PasswordSchema } from "~~/schemas";
 
 const { closeModal } = useModal();
 
-const { handleSubmit, resetForm } = useForm({
-  validationSchema: PasswordSchema,
-});
-
-const { value: url, errorMessage: urlError } = useField<string>("url", "", {
-  initialValue: "",
-});
-const { value: name, errorMessage: nameError } = useField<string>("name", "", {
-  initialValue: "",
-});
-const { value: username, errorMessage: usernameError } = useField<string>(
-  "username",
-  "",
-  { initialValue: "" }
-);
-const { value: password, errorMessage: passwordError } = useField<string>(
-  "password",
-  "",
-  { initialValue: "" }
-);
-
-const onSubmit = handleSubmit(async () => {
+const handleSubmit = async (values) => {
   try {
     await useFetch("/api/new-password-card", {
       method: "POST",
       body: {
         id: v4(),
-        url: url.value,
-        name: name.value,
-        username: username.value,
-        password: password.value,
+        url: values.url,
+        name: values.name,
+        username: values.username,
+        password: values.password,
       },
     });
     closeModal();
-    resetForm({
-      values: {
-        id: "",
-        url: "",
-        name: "",
-        username: "",
-        password: "",
-      },
-    });
   } catch (error) {
     console.error(error);
   }
-});
+};
 </script>
 
 <template>
-  <form
-    @submit.prevent="onSubmit"
+  <ValidationForm
+    @submit="handleSubmit"
+    :validation-schema="PasswordSchema"
     class="flex flex-col space-y-4 overflow-hidden bg-white"
   >
     <header
@@ -73,39 +44,19 @@ const onSubmit = handleSubmit(async () => {
     </header>
 
     <section class="flex flex-col flex-1 px-4 space-y-4">
-      <Input
-        label="URL:"
-        name="url"
-        placeholder="Add the website here"
-        v-model="url"
-        :error="urlError"
-      />
+      <Input label="URL:" name="url" placeholder="Add the website here" />
 
-      <Input
-        label="Name:"
-        name="name"
-        placeholder="Website's name"
-        v-model="name"
-        :error="nameError"
-      />
+      <Input label="Name:" name="name" placeholder="Website's name" />
 
-      <Input
-        label="Username:"
-        name="username"
-        placeholder="Your username"
-        v-model="username"
-        :error="usernameError"
-      />
+      <Input label="Username:" name="username" placeholder="Your username" />
 
       <InputPassword
         label="Password:"
         name="password"
         placeholder="Create a password"
-        v-model="password"
-        :error="passwordError"
       />
 
-      <PasswordOptions v-model="password" />
+      <PasswordOptions />
     </section>
 
     <footer class="flex justify-end w-full gap-4 p-2">
@@ -114,5 +65,5 @@ const onSubmit = handleSubmit(async () => {
       </ButtonOutlined>
       <Button type="submit">Save</Button>
     </footer>
-  </form>
+  </ValidationForm>
 </template>
