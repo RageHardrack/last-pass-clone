@@ -1,5 +1,5 @@
 <template>
-  <transition name="fade">
+  <Transition name="fade">
     <div
       class="fixed inset-0 z-30 flex flex-col items-center justify-center overflow-hidden"
     >
@@ -7,5 +7,5 @@
 
       <slot />
     </div>
-  </transition>
+  </Transition>
 </template>

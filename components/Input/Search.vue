@@ -14,6 +14,12 @@ const handleInput = () => emit("update:modelValue", val.value);
 
 <template>
   <div>
-    <input type="search" @input="handleInput" :placeholder="placeholder" class="w-full px-2 py-1 border border-gray-400 rounded focus:border-gray-600" />
+    <input
+      type="search"
+      @input="handleInput"
+      :placeholder="placeholder"
+      v-model="val"
+      class="w-full px-2 py-1 border border-gray-400 rounded focus:border-gray-600"
+    />
   </div>
 </template>
