@@ -26,11 +26,11 @@ textarea {
   @apply transition-all duration-500 ease-in-out;
 }
 
-.left-enter-from,
-.left-leave-to {
-  @apply -translate-x-full opacity-0;
+.from-above-enter-from,
+.from-above-leave-to {
+  @apply -translate-y-full opacity-0;
 }
-.left-enter-active,
-.left-leave-active {
+.from-above-enter-active,
+.from-above-leave-active {
   @apply transition-all duration-500 ease-in-out;
 }

@@ -3,6 +3,8 @@ const allowSpecialChars = ref(true);
 const allowNumericChars = ref(true);
 const passwordLength = ref(8);
 
+const isShowOptions = ref(false);
+
 const { generateNewPassword } = useGeneratePassword();
 
 const handleGeneratePassword = () => {
@@ -18,10 +20,17 @@ const handleGeneratePassword = () => {
   <section
     class="flex flex-col items-center justify-between w-full gap-4 md:flex-row"
   >
-    <div class="flex flex-col items-center justify-center flex-1 space-y-4 md:items-start">
+    <header class="flex gap-2">
       <h2 class="text-xl font-semibold text-gray-700">Advanced Options</h2>
 
-      <ul class="flex flex-col w-10/12 space-y-2 text-gray-700">
+      <button @click="isShowOptions = !isShowOptions">hey</button>
+    </header>
+
+    <Transition name="from-above">
+      <ul
+        v-show="isShowOptions"
+        class="flex flex-col items-center justify-center flex-1 w-10/12 space-y-4 text-gray-700 md:items-start"
+      >
         <li>
           <input
             type="range"
@@ -58,15 +67,15 @@ const handleGeneratePassword = () => {
           </label>
         </li>
       </ul>
-    </div>
+    </Transition>
 
-    <div class="flex items-center justify-center">
+    <footer class="flex items-center justify-center">
       <button
         @click.prevent="handleGeneratePassword"
         class="flex px-3 py-1 font-semibold text-white transition duration-500 ease-in-out bg-red-600 rounded-lg hover:bg-opacity-90"
       >
         Generate
       </button>
-    </div>
+    </footer>
   </section>
 </template>

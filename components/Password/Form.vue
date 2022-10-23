@@ -35,7 +35,7 @@ const handleSubmit = async (values) => {
   <ValidationForm
     @submit="handleSubmit"
     :validation-schema="PasswordSchema"
-    class="flex flex-col space-y-4 overflow-hidden bg-white"
+    class="flex flex-col space-y-4 overflow-hidden bg-white overscroll-auto"
   >
     <header
       class="flex items-center justify-between w-full px-3 py-2 text-white bg-red-600"
