@@ -13,6 +13,7 @@
     "nuxt": "3.0.0-rc.12"
   },
   "dependencies": {
+    "@pinia/nuxt": "0.4.3",
     "uuid": "9.0.0",
     "vee-validate": "4.7.0",
     "yup": "0.32.11"

@@ -1,26 +1,26 @@
 <script setup lang="ts">
 import { v4 } from "uuid";
 import { Form as ValidationForm } from "vee-validate";
+import { useDatabaseStore } from "~~/stores/database";
 
 import { PasswordSchema } from "~~/schemas";
 
 const { closeModal } = useModal();
-const router = useRouter()
+const store = useDatabaseStore();
+const router = useRouter();
 
 const handleSubmit = async (values) => {
   try {
-    await useFetch("/api/new-password-card", {
-      method: "POST",
-      body: {
-        id: v4(),
-        url: values.url,
-        name: values.name,
-        username: values.username,
-        password: values.password,
-      },
-    });
+    const body = {
+      id: v4(),
+      url: values.url,
+      name: values.name,
+      username: values.username,
+      password: values.password,
+    };
+    store.addPasswordCard(body);
     closeModal();
-    router.push("/")
+    router.push("/");
   } catch (error) {
     console.error(error);
   }
@@ -38,7 +38,7 @@ const handleSubmit = async (values) => {
     >
       <p class="text-sm">New Password</p>
 
-      <h2 class="text-3xl hidden md:block">LastPass</h2>
+      <h2 class="hidden text-3xl md:block">LastPass</h2>
 
       <button @click.prevent="closeModal">
         <IconCrossSvg class="w-6 h-6 text-white" />

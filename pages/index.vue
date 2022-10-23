@@ -1,9 +1,9 @@
 <script setup lang="ts">
-const { isOpen } = useModal();
+import { useDatabaseStore } from "~~/stores/database";
 
-const { data: cards } = await useFetch("/api/password-cards", {
-  watch: [isOpen],
-});
+const store = useDatabaseStore();
+
+const cards = computed(() => store.getPasswordCards);
 </script>
 
 <template>
