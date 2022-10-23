@@ -13,6 +13,8 @@ const state = (): DatabaseState => ({
       url: "twitch.tv",
       username: "hardrack",
       password: "123456",
+      notes: "This is a note",
+      isFav: false
     },
     {
       id: "1234asdas43",
@@ -20,6 +22,8 @@ const state = (): DatabaseState => ({
       url: "blizzard.battle.net",
       username: "hardrack",
       password: "244466666",
+      notes: "This is a note x2",
+      isFav: false
     },
   ],
 });

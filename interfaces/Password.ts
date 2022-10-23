@@ -4,4 +4,6 @@ export interface IPassword {
   url: string;
   username: string;
   password: string;
+  notes?: string;
+  isFav: boolean
 }

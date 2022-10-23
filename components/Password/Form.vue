@@ -10,6 +10,8 @@ const { closeModal } = useModal();
 const store = useDatabaseStore();
 const router = useRouter();
 
+const isFavoriteCard = ref(false);
+
 const handleSubmit = async (values) => {
   try {
     const body = {
@@ -18,6 +20,8 @@ const handleSubmit = async (values) => {
       name: values.name,
       username: values.username,
       password: values.password,
+      notes: values.notes,
+      isFav: isFavoriteCard.value,
     };
     store.addPasswordCard(body);
     closeModal();
@@ -60,14 +64,28 @@ const handleSubmit = async (values) => {
         :value="newPassword"
       />
 
+      <InputTextarea label="Notes:" name="notes" placeholder="Write here" />
+
       <PasswordOptions />
     </section>
 
-    <footer class="flex justify-end w-full gap-4 p-2">
-      <ButtonOutlined @click.prevent="closeModal" type="button">
-        Cancel
-      </ButtonOutlined>
-      <Button type="submit">Save</Button>
+    <footer class="flex items-center justify-between w-full p-2">
+      <div class="flex gap-4">
+        <button title="Add Favorite" @click.prevent="isFavoriteCard = !isFavoriteCard">
+          <IconSolidStarSvg
+            v-if="isFavoriteCard"
+            class="w-8 h-8 text-yellow-600"
+          />
+          <IconEmptyStarSvg v-else class="w-8 h-8 text-yellow-600" />
+        </button>
+      </div>
+
+      <div class="flex gap-4">
+        <ButtonOutlined @click.prevent="closeModal" type="button">
+          Cancel
+        </ButtonOutlined>
+        <Button type="submit">Save</Button>
+      </div>
     </footer>
   </ValidationForm>
 </template>

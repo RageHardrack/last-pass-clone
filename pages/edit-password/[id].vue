@@ -13,6 +13,8 @@ definePageMeta({
 const id = route.params.id as string;
 const store = useDatabaseStore();
 
+const isFavoriteCard = ref(false);
+
 const handleCancel = () => {
   router.back();
 };
@@ -29,6 +31,8 @@ const handleSubmit = (values) => {
     name: values.name,
     username: values.username,
     password: values.password,
+    notes: values.notes,
+    isFav: isFavoriteCard.value,
   };
   store.updatePasswordCard(body);
   router.push("/");
@@ -63,12 +67,25 @@ const handleSubmit = (values) => {
         placeholder="Create a password"
       />
 
+      <InputTextarea label="Notes:" name="notes" placeholder="Write here" />
+
       <PasswordOptions />
     </section>
 
     <footer class="flex justify-between w-full p-2">
       <div class="flex gap-4">
-        <button @click.prevent="handleRemove">
+        <button
+          title="Add Favorite"
+          @click.prevent="isFavoriteCard = !isFavoriteCard"
+        >
+          <IconSolidStarSvg
+            v-if="isFavoriteCard"
+            class="w-8 h-8 text-yellow-600"
+          />
+          <IconEmptyStarSvg v-else class="w-8 h-8 text-yellow-600" />
+        </button>
+
+        <button title="Delete" @click.prevent="handleRemove">
           <IconTrashSvg class="w-8 h-8 text-red-600" />
         </button>
       </div>
