@@ -14,7 +14,7 @@ const state = (): DatabaseState => ({
       username: "hardrack",
       password: "123456",
       notes: "This is a note",
-      isFav: false
+      isFav: false,
     },
     {
       id: "1234asdas43",
@@ -23,7 +23,7 @@ const state = (): DatabaseState => ({
       username: "hardrack",
       password: "244466666",
       notes: "This is a note x2",
-      isFav: false
+      isFav: false,
     },
   ],
 });
@@ -56,4 +56,5 @@ export const useDatabaseStore = defineStore("database", {
   state,
   getters,
   actions,
+  persist: true,
 });
