@@ -18,9 +18,9 @@ const handleCancel = () => {
 };
 
 const handleRemove = () => {
-  store.removePasswordCard(id)
+  store.removePasswordCard(id);
   router.push("/");
-}
+};
 
 const handleSubmit = (values) => {
   const body = {
@@ -67,9 +67,11 @@ const handleSubmit = (values) => {
     </section>
 
     <footer class="flex justify-between w-full p-2">
-      <button @click.prevent="handleRemove">
-        <IconTrashSvg class="w-8 h-8 text-red-600" />
-      </button>
+      <div class="flex gap-4">
+        <button @click.prevent="handleRemove">
+          <IconTrashSvg class="w-8 h-8 text-red-600" />
+        </button>
+      </div>
 
       <div class="flex gap-4">
         <ButtonOutlined @click.prevent="handleCancel" type="button">
