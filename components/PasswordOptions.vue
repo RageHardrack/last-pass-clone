@@ -1,19 +1,22 @@
 <script setup lang="ts">
-
 const allowSpecialChars = ref(true);
 const allowNumericChars = ref(true);
 const passwordLength = ref(8);
 
-const {  generateNewPassword } = useGeneratePassword({
-  allowSpecialChars,
-  allowNumericChars,
-  passwordLength,
-});
+const { generateNewPassword } = useGeneratePassword();
+
+const handleGeneratePassword = () => {
+  generateNewPassword({
+    allowSpecialChars,
+    allowNumericChars,
+    passwordLength,
+  });
+};
 </script>
 
 <template>
   <section
-    class="flex flex-col md:flex-row gap-4 items-center justify-between w-full"
+    class="flex flex-col items-center justify-between w-full gap-4 md:flex-row"
   >
     <div class="flex flex-col items-start justify-center flex-1 space-y-4">
       <h2 class="text-xl font-semibold text-gray-700">Advanced Options</h2>
@@ -59,7 +62,7 @@ const {  generateNewPassword } = useGeneratePassword({
 
     <div class="flex items-center justify-center">
       <button
-        @click.prevent="generateNewPassword"
+        @click.prevent="handleGeneratePassword"
         class="flex px-3 py-1 font-semibold text-white transition duration-500 ease-in-out bg-red-600 rounded-lg hover:bg-opacity-90"
       >
         Generate

@@ -12,6 +12,7 @@ const isShowPassword = ref(false);
 
 const props = defineProps<Props>();
 const name = toRef(props, "name");
+const initialValue = toRef(props, "value");
 
 const {
   value: inputValue,
@@ -19,7 +20,7 @@ const {
   handleBlur,
   handleChange,
 } = useField<string>(name, "", {
-  initialValue: props.value,
+  initialValue,
 });
 </script>
 
