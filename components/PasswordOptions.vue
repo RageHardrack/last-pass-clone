@@ -18,7 +18,7 @@ const handleGeneratePassword = () => {
   <section
     class="flex flex-col items-center justify-between w-full gap-4 md:flex-row"
   >
-    <div class="flex flex-col items-start justify-center flex-1 space-y-4">
+    <div class="flex flex-col items-center justify-center flex-1 space-y-4 md:items-start">
       <h2 class="text-xl font-semibold text-gray-700">Advanced Options</h2>
 
       <ul class="flex flex-col w-10/12 space-y-2 text-gray-700">

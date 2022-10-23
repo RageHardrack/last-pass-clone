@@ -72,8 +72,8 @@ const handleSubmit = (values) => {
       <PasswordOptions />
     </section>
 
-    <footer class="flex justify-between w-full p-2">
-      <div class="flex gap-4">
+    <footer class="flex justify-between w-full gap-2 p-2">
+      <div class="flex gap-2">
         <button
           title="Add Favorite"
           @click.prevent="isFavoriteCard = !isFavoriteCard"
@@ -90,7 +90,7 @@ const handleSubmit = (values) => {
         </button>
       </div>
 
-      <div class="flex gap-4">
+      <div class="flex gap-2">
         <ButtonOutlined @click.prevent="handleCancel" type="button">
           Cancel
         </ButtonOutlined>

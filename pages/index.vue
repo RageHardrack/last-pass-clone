@@ -24,7 +24,7 @@ const cards = computed(
 
 <template>
   <section class="flex flex-col space-y-6">
-    <header class="flex items-center justify-between">
+    <header class="flex flex-col items-center justify-between gap-4 md:flex-row">
       <InputSearch v-model="search" placeholder="Search my vault" />
 
       <div class="flex overflow-hidden border border-gray-400 rounded">

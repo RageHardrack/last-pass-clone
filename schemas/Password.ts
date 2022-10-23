@@ -11,4 +11,6 @@ export const PasswordSchema = yup.object().shape({
     .string()
     .min(6, "Minimum 6 characters")
     .required("You must create a password"),
+  isFav: yup.boolean(),
+  notes: yup.string(),
 });
