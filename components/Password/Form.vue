@@ -5,7 +5,6 @@ import { useDatabaseStore } from "~~/stores/database";
 
 import { PasswordSchema } from "~~/schemas";
 
-const { newPassword } = useGeneratePassword();
 const { closeModal } = useModal();
 const store = useDatabaseStore();
 const router = useRouter();
@@ -61,7 +60,6 @@ const handleSubmit = async (values) => {
         label="Password:"
         name="password"
         placeholder="Create a password"
-        :value="newPassword"
       />
 
       <InputTextarea label="Notes:" name="notes" placeholder="Write here" />

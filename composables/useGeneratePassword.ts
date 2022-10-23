@@ -23,11 +23,21 @@ const useGeneratePassword = () => {
         chars.value.charAt(Math.floor(Math.random() * chars.value.length))
       )
       .join("");
+
+    return Array.from({ length: passwordLength.value })
+      .map(() =>
+        chars.value.charAt(Math.floor(Math.random() * chars.value.length))
+      )
+      .join("");
   };
+
+  const updateNewPassword = (newValue: string) =>
+    (newPassword.value = newValue);
 
   return {
     newPassword,
     generateNewPassword,
+    updateNewPassword
   };
 };
 

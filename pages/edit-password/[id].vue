@@ -13,7 +13,7 @@ definePageMeta({
 const id = route.params.id as string;
 const store = useDatabaseStore();
 
-const isFavoriteCard = ref(false);
+const isFavoriteCard = ref(store.getPasswordCardById(id).isFav);
 
 const handleCancel = () => {
   router.back();
