@@ -6,6 +6,16 @@ html {
   scroll-behavior: smooth;
 }
 
+button,
+input,
+textarea {
+  @apply focus:outline-none;
+}
+
+.input-class {
+  @apply w-full px-2 py-1 transition duration-300 border border-gray-400 rounded focus:border-gray-600;
+}
+
 /* Transitions */
 .fade-enter-from,
 .fade-leave-to {

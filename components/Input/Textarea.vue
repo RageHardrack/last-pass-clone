@@ -33,7 +33,7 @@ const {
       :placeholder="placeholder"
       @input="handleChange"
       @blur="handleBlur"
-      class="w-full px-2 py-1 border border-gray-400 rounded"
+      class="input-class"
       :class="{ 'border-red-600': Boolean(errorMessage) }"
     />
 
