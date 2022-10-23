@@ -16,7 +16,7 @@ const { card } = defineProps<Props>();
     @click="router.push(`edit-password/${card.id}`)"
   >
     <IconSolidStarSvg
-      v-if="card.isFav"
+      v-show="card.isFav"
       class="absolute w-6 h-6 text-yellow-500 right-2 top-2"
     />
 
