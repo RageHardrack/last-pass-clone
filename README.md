@@ -24,6 +24,8 @@ And for the apps/sites we only use occasionally, we can constantly be forced to 
 
 I decided to use Nuxt v3 because being a Vue.JS framework I can use the latest features to make my life easier during development. I also decided to use TailwindCSS to create my styles quickly and easily, as I am very good with this tool.
 
+I took full inspiration from the LastPass page to get the design, without many variants so as not to complicate the layout stage. I decided to follow the Mobile-First strategy to also adapt this web app to mobile devices, tablets and desktops, achieving a responsive design.
+
 I started by creating an overview to display the cards and a modal to create new password cards. I made my own Inputs components and used a popular form validation library called Vee-validate, just to show off that functionality and easily implement it. To further enhance this functionality, I added the Yup library.
 
 I chose to create each component to break down the code to the minimum, thinking of the strategy of reusable components that improve development time.
@@ -32,7 +34,17 @@ My preference for using TypeScript allows me to document my code and give it the
 
 The need to use Pinia as State Management is purely by preference, since it allows me to preserve data between components and share it quickly to show similar behavior when using endpoints.
 
-For the folder structure I decided to use specific names for greater readability of the project. Highlight composable folders, which are for storing reusable functions that use the Composition API to implement reactive logic
+For the folder structure I decided to use specific names for greater readability of the project. Highlight composable folders, which are for storing reusable functions that use the Composition API to implement reactive logic.
+
+## Features
+
+- [x] Present “cards” that tile across the screen and allow the user to scroll down through them.
+- [x] Provide the ability to create new cards. Notice that URL, Name, Username and Password
+must be required.
+- [x] Provide the ability to edit cards.
+- [x] Provide the ability to delete cards.
+- [x] For the Password field, provide support for it to be obscured or unobscured. And provide the ability to copy the password into the clipboard so it may be pasted by the user into a password field when signing into an application of website.
+- [x] Provide a very simple search/filtering – use only the Name field.
 
 ## Technical Dependencies and Libraries
 
