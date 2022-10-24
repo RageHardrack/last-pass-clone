@@ -67,7 +67,7 @@ const handleSubmit = async (values) => {
       <PasswordOptions />
     </section>
 
-    <footer class="flex items-center justify-between w-full p-2">
+    <footer class="flex items-center justify-between w-full p-2 md:p-4">
       <div class="flex gap-4">
         <button title="Add Favorite" @click.prevent="isFavoriteCard = !isFavoriteCard">
           <IconSolidStarSvg
